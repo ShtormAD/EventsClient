@@ -1,5 +1,6 @@
 package com.shtormad.eventsclient
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,10 +30,11 @@ class MyRvAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyRvAd
         return MyViewHolder(itemView)
     }
 
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.TvName?.text = events.get(position).Name
         holder.TvDescription?.text = events.get(position).Description
-        holder.TvAuthor?.text = events.get(position).Author
+        holder.TvAuthor?.text = "Автор: " + events.get(position).Author//TODO перенести бы в ресурсы
     }
 
     override fun getItemCount(): Int {
