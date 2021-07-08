@@ -7,28 +7,43 @@
 
     <TextView
             android:text="Имя"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" android:id="@+id/RvItemName"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp" android:layout_marginStart="10dp"
-            android:textColor="?android:attr/colorForeground" android:textSize="18sp"/>
+            android:layout_marginTop="10dp"
+            android:textColor="?android:attr/colorForeground" android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"/>
     <TextView
             android:text="Описание"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" android:id="@+id/RvItemDescription"
             app:layout_constraintTop_toBottomOf="@+id/RvItemName" app:layout_constraintStart_toStartOf="@+id/RvItemName"
-            android:layout_marginTop="7dp" android:textSize="16sp" android:textColor="@color/cardview_dark_background"/>
+            android:layout_marginTop="7dp" android:textSize="16sp" android:textColor="@color/cardview_dark_background"
+            app:layout_constraintEnd_toEndOf="@+id/RvItemName"/>
     <TextView
             android:text="Автор:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/RvItemAuthor"
             app:layout_constraintStart_toStartOf="@+id/RvItemDescription"
-            app:layout_constraintTop_toBottomOf="@+id/RvItemDescription" android:layout_marginTop="7dp"
-            android:textSize="16sp"/>
+            android:textSize="16sp" app:layout_constraintTop_toTopOf="@+id/RvItemTime"/>
     <View android:layout_width="match_parent"
           android:layout_height="1dp"
           app:layout_constraintTop_toBottomOf="@+id/RvItemAuthor" android:layout_marginTop="6dp"
           app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
           android:layout_marginStart="7dp" android:layout_marginEnd="7dp"
           android:background="#979797"/>
+    <TextView
+            android:text="Даты"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/RvItemDate"
+            android:layout_marginTop="7dp"
+            app:layout_constraintTop_toBottomOf="@+id/RvItemDescription"
+            app:layout_constraintEnd_toEndOf="@+id/RvItemDescription" android:textSize="16sp"/>
+    <TextView
+            android:text="Время"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/RvItemTime"
+            app:layout_constraintEnd_toEndOf="@+id/RvItemDate" app:layout_constraintTop_toBottomOf="@+id/RvItemDate"
+            android:layout_marginTop="7dp" android:textSize="16sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

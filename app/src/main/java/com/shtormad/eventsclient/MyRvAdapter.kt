@@ -7,19 +7,30 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shtormad.eventsclient.models.Event
 
+/**
+ * Адаптер данных для RecyclerView на главной активности
+ */
+
 class MyRvAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyRvAdapter.MyViewHolder>()
 {
 
+    /**
+     * ViewHolder - храним элементы интерфейса
+     */
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        var TvName: TextView? = null
-        var TvDescription: TextView? = null
-        var TvAuthor: TextView? = null
+        var tvName: TextView? = null
+        var tvDescription: TextView? = null
+        var tvAuthor: TextView? = null
+        var tvDate: TextView? = null
+        var tvTime: TextView? = null
 
         init{
-            TvName = itemView.findViewById(R.id.RvItemName)
-            TvDescription = itemView.findViewById(R.id.RvItemDescription)
-            TvAuthor = itemView.findViewById(R.id.RvItemAuthor)
+            tvName = itemView.findViewById(R.id.RvItemName)
+            tvDescription = itemView.findViewById(R.id.RvItemDescription)
+            tvAuthor = itemView.findViewById(R.id.RvItemAuthor)
+            tvDate = itemView.findViewById(R.id.RvItemDate)
+            tvTime = itemView.findViewById(R.id.RvItemTime)
         }
     }
 
@@ -30,13 +41,28 @@ class MyRvAdapter(private val events: List<Event>) : RecyclerView.Adapter<MyRvAd
         return MyViewHolder(itemView)
     }
 
-
+    /**
+     * Заполняем элементы интерфейса данными
+     */
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.TvName?.text = events.get(position).name
-        holder.TvDescription?.text = events.get(position).description
-        holder.TvAuthor?.text = "Автор: " + events.get(position).author//TODO перенести бы в ресурсы
+        holder.tvName?.text = events[position].name
+        holder.tvDescription?.text = events[position].description
+        holder.tvAuthor?.text = "Автор: " + events[position].author//TODO перенести бы в ресурсы
+
+        if(events[position].dateStart == events[position].dateEnd)
+            holder.tvDate?.text = events[position].dateStart.toString().substringBeforeLast("T").replace("-",".", false)
+        else
+            holder.tvDate?.text = events[position].dateStart.toString().substringBeforeLast("T").replace("-",".", false) +" - "+ events[position].dateEnd.toString().substringBeforeLast("T").replace("-",".", false)
+        if(events[position].timeStart == events[position].timeEnd)
+            holder.tvTime?.text = events[position].timeStart.toString().substringAfterLast("T")
+        else
+            holder.tvTime?.text = events[position].timeStart.toString().substringAfterLast("T") +"-"+ events[position].timeEnd.toString().substringAfterLast("T")
+
     }
 
+    /**
+     * Считаем количество элементов в коллекции
+     */
     override fun getItemCount(): Int {
         return events.size
     }
